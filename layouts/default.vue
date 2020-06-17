@@ -1,6 +1,7 @@
 <template>
   <v-app>
     <v-navigation-drawer
+      permanent
       v-model="drawer"
       :mini-variant="miniVariant"
       :clipped="clipped"
@@ -25,7 +26,6 @@
       </v-list>
     </v-navigation-drawer>
     <v-app-bar :clipped-left="clipped" fixed app>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title v-text="title" />
       <v-spacer />
       <v-btn depressed>
@@ -77,7 +77,7 @@
 export default {
   data() {
     return {
-      clipped: false,
+      clipped: true,
       drawer: false,
       fixed: false,
       notifications: false,
