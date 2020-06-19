@@ -18,7 +18,7 @@
              <v-divider
                 v-else-if="item.divider"
                 :key="index"
-              ></v-divider> 
+              ></v-divider>
           <v-list-item
             v-else
             :key="item.title"
@@ -31,10 +31,10 @@
             <v-list-item-content >
               <v-list-item-title v-text="item.title" />
             </v-list-item-content>
-  
-          </v-list-item>  
-         
-        </template> 
+
+          </v-list-item>
+
+        </template>
       </v-list>
     </v-navigation-drawer>
 </template>
@@ -42,7 +42,7 @@
 <script>
 
 export default {
-    name: 'Menu',
+  name: 'Menu',
   data() {
     return {
       clipped: true,
