@@ -2,7 +2,7 @@
   <v-app>
     <Menu />
     <AppBar />
-    <v-main>
+    <v-main class="color" >
       <v-container>
         <nuxt />
       </v-container>
@@ -34,3 +34,8 @@ export default {
   }
 }
 </script>
+<style>
+.color{
+  background-color: #E0E0E0;
+}
+</style>

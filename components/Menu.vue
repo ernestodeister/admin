@@ -62,7 +62,7 @@ export default {
         {
           icon: 'mdi-newspaper',
           title: 'ORDERS',
-          to: '/orders'
+          to: '/orders/ListOrders'
         },
         {
           icon: 'mdi-package-variant',
