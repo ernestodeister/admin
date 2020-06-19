@@ -1,6 +1,6 @@
 <template>
 
-  <v-layout column justify-center align-center>
+  <v-layout column justify-center align-center >
     <Head/>
       <v-card width="100%">
         <v-card-title class="headline">

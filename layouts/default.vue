@@ -1,8 +1,8 @@
 <template>
-  <v-app>
+  <v-app :fullscreen="$vuetify.breakpoint.mobile">
     <Menu />
     <AppBar />
-    <v-main class="color" >
+    <v-main class="color">
       <v-container>
         <nuxt />
       </v-container>

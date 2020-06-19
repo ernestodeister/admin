@@ -1,5 +1,5 @@
 <template>
-  <v-layout column justify-center align-center>
+  <v-layout column justify-center align-center >
     
       <v-card width="100%">
         <v-card-title class="headline">
@@ -9,8 +9,6 @@
           <p>
             LIST ORDERS
           </p>
-          
-          
             <v-data-table
                 :headers="headers"
                 :items="orders"

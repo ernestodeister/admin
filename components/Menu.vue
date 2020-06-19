@@ -1,24 +1,30 @@
 <template>
     <v-navigation-drawer
       permanent
+      :mini-variant.sync="mini"
+      :mini-variant-width="width"
       v-model="drawer"
-      :mini-variant="miniVariant"
       :clipped="clipped"
       fixed
       app
     >
       <v-list>
         <template v-for="(item, index) in items">
+          
+          
            <v-subheader
                 v-if="item.header"
                 :key="item.header"
               >
-                {{ item.header }}
+                <v-div v-if="!mini" >{{ item.header }}</v-div>
+                <v-div v-if="mini" >{{ item.header2 }}</v-div>
             </v-subheader>
+          
              <v-divider
                 v-else-if="item.divider"
                 :key="index"
               ></v-divider> 
+              
           <v-list-item
             v-else
             :key="item.title"
@@ -28,11 +34,12 @@
             <v-list-item-action>
               <v-icon >{{ item.icon }}</v-icon>
             </v-list-item-action>
-            <v-list-item-content >
+            <v-list-item-content>
               <v-list-item-title v-text="item.title" />
             </v-list-item-content>
   
-          </v-list-item>  
+          </v-list-item> 
+           
          
         </template> 
       </v-list>
@@ -46,8 +53,10 @@ export default {
   data() {
     return {
       clipped: true,
-      drawer: false,
+      drawer: true,
       fixed: false,
+      resize: true,
+      width: 60,
       notifications: false,
       items: [
         {
@@ -57,7 +66,8 @@ export default {
         },
         { divider: true },
         {
-            header: 'Overview'
+            header: 'Overview',
+            header2: 'O',
         },
         {
           icon: 'mdi-newspaper',
@@ -92,6 +102,10 @@ export default {
         { divider: true },
         {
             header: 'Account Management',
+            header2: 'A M',
+            icon: null,
+            title: null,
+            to: null
         },
         {
           icon: 'mdi-credit-card',
@@ -104,8 +118,24 @@ export default {
           to: '/place_order'
         }
       ],
-      miniVariant: false
     }
+  },
+  methods: {
+
+    
+      
+    },
+    
+  computed: {
+  mini() {
+    switch (this.$vuetify.breakpoint.name) {
+      case 'xs': return true
+      case 'sm': return true
+      case 'md': return true
+      case 'lg': return false
+      case 'xl': return false
   }
+}
+}
 }
 </script>
