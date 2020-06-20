@@ -10,21 +10,17 @@
     >
       <v-list>
         <template v-for="(item, index) in items">
-          
-          
+          <div :key="index" v-if="mini == false || mini == true && item.val == true">
            <v-subheader
                 v-if="item.header"
                 :key="item.header"
               >
-                <v-div v-if="!mini" >{{ item.header }}</v-div>
-                <v-div v-if="mini" >{{ item.header2 }}</v-div>
+                {{ item.header }}
             </v-subheader>
-          
              <v-divider
                 v-else-if="item.divider"
                 :key="index"
               ></v-divider> 
-              
           <v-list-item
             v-else
             :key="item.title"
@@ -37,10 +33,8 @@
             <v-list-item-content>
               <v-list-item-title v-text="item.title" />
             </v-list-item-content>
-  
           </v-list-item> 
-           
-         
+          </div>
         </template> 
       </v-list>
     </v-navigation-drawer>
@@ -62,60 +56,66 @@ export default {
         {
           icon: 'mdi-television-guide',
           title: 'DASHBOARD',
-          to: '/'
+          to: '/',
+          val: true,
         },
-        { divider: true },
+        { divider: true , val: true },
         {
             header: 'Overview',
-            header2: 'O',
+            val: false,
         },
         {
           icon: 'mdi-newspaper',
           title: 'ORDERS',
-          to: '/orders/ListOrders'
+          to: '/orders/ListOrders',
+          val: true,
         },
         {
           icon: 'mdi-package-variant',
           title: 'DELIVERY',
-          to: '/delivery'
+          to: '/delivery',
+          val: true,
         },
         {
           icon: 'mdi-file',
           title: 'INVOICES',
-          to: '/invoices'
+          to: '/invoices',
+          val: true,
         },
         {
           icon: 'mdi-cash-multiple',
           title: 'PAYMENTS',
-          to: '/payments'
+          to: '/payments',
+          val: true,
         },
         {
           icon: ' mdi-checkbox-multiple-marked-outline',
           title: 'CREDIT NOTES',
-          to: '/credit_note'
+          to: '/credit_note',
+          val: true,
         },
         {
           icon: 'mdi-file-document',
           title: 'STATEMENT',
-          to: '/statement'
+          to: '/statement',
+          val: true,
         },
-        { divider: true },
+        { divider: true, val: true },
         {
             header: 'Account Management',
-            header2: 'A M',
-            icon: null,
-            title: null,
-            to: null
+            val: false,
         },
         {
           icon: 'mdi-credit-card',
           title: 'MAKE A PAYMENT',
-          to: '/make_payment'
+          to: '/make_payment',
+          val: true,
         },
         {
           icon: 'mdi-cart-outline',
           title: 'PLACE AN ORDER',
-          to: '/place_order'
+          to: '/place_order',
+          val: true,
         }
       ],
     }
@@ -134,8 +134,8 @@ export default {
       case 'md': return true
       case 'lg': return false
       case 'xl': return false
+      } 
+    }
   }
-}
-}
 }
 </script>
