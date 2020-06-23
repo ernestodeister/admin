@@ -2,7 +2,7 @@
   <v-layout column>
     <!--    <v-flex xs12 sm8 md6>-->
     <v-row>
-      <v-col cols="5">
+      <v-col md="5" xs="12">
         <v-row>
           <v-card class="d-inline-block mx-auto">
             <v-container>
@@ -47,7 +47,11 @@
         </v-row>
       </v-col>
       <v-col>
-        <v-card class="d-inline-block mx-auto" height="100%" width="100%">
+        <v-card
+          class="d-inline-block mx-auto"
+          :height="this.$vuetify.breakpoint.smAndDown ? '140px' : '230px'"
+          :width="this.$vuetify.breakpoint.smAndDown ? '100%' : '206px'"
+        >
           <v-card-text class="light_primary"></v-card-text>
           <v-card-subtitle>
             <v-icon>mdi-alert-circle-outline</v-icon>
@@ -57,9 +61,11 @@
             <h2>€ 1,423</h2>
           </v-card-actions>
         </v-card>
-      </v-col>
-      <v-col>
-        <v-card class="d-inline-block mx-auto" height="100%" width="100%">
+        <v-card
+          class="d-inline-block mx-auto"
+          :height="this.$vuetify.breakpoint.smAndDown ? '140px' : '230px'"
+          :width="this.$vuetify.breakpoint.smAndDown ? '100%' : '206px'"
+        >
           <v-card-text class="primary white--text"></v-card-text>
           <v-card-subtitle>
             <v-icon>mdi-av-timer</v-icon>
@@ -69,9 +75,11 @@
             <h2>€ 23,423</h2>
           </v-card-actions>
         </v-card>
-      </v-col>
-      <v-col>
-        <v-card class="d-inline-block mx-auto" height="100%" width="100%">
+        <v-card
+          class="d-inline-block mx-auto"
+          :height="this.$vuetify.breakpoint.smAndDown ? '140px' : '230px'"
+          :width="this.$vuetify.breakpoint.smAndDown ? '100%' : '206px'"
+        >
           <v-card-text class="dark_primary"></v-card-text>
           <v-card-subtitle>
             <v-icon>mdi-flag-outline</v-icon>
@@ -91,14 +99,17 @@
       <v-col>
         <v-card>
           <v-card-subtitle>
-            <v-container px-6>
-              <v-row>
+            <v-container px-6 py-0>
+              <v-row align="center">
                 Last 5 Orders
                 <v-spacer />
-                <v-icon>mdi-cart</v-icon>
+                <span class="group pa-2 primary">
+                  <v-icon dark>mdi-cart</v-icon>
+                </span>
               </v-row>
             </v-container>
           </v-card-subtitle>
+          <v-divider></v-divider>
           <v-card-text>
             <v-simple-table>
               <template v-slot:default>
@@ -112,28 +123,22 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td>564647</td>
+                    <td>114647</td>
                     <td>28/06/2020</td>
                     <td>Shipped</td>
-                    <td>...</td>
+                    <td>
+                      <v-icon>mdi-dots-vertical</v-icon>
+                    </td>
                   </tr>
                   <tr>
                     <td>564647</td>
                     <td>21/03/2020</td>
                     <td>Open</td>
-                    <td>...</td>
-                  </tr>
-                  <tr>
-                    <td>564647</td>
-                    <td>28/06/2020</td>
-                    <td>Open</td>
-                    <td>...</td>
-                  </tr>
-                  <tr>
-                    <td>564647</td>
-                    <td>28/06/2020</td>
-                    <td>Shipped</td>
-                    <td>...</td>
+                    <td>
+                      <span pa-0 ma-0>
+                        <v-icon>mdi-dots-vertical</v-icon>
+                      </span>
+                    </td>
                   </tr>
                 </tbody>
               </template>
@@ -146,14 +151,17 @@
       <v-col>
         <v-card>
           <v-card-subtitle>
-            <v-container px-6>
+            <v-container px-6 py-0>
               <v-row>
                 Next 5 Deliveries due
                 <v-spacer />
-                <v-icon>mdi-truck-delivery-outline</v-icon>
+                <span class="group pa-2 primary">
+                  <v-icon dark>mdi-truck-delivery-outline</v-icon>
+                </span>
               </v-row>
             </v-container>
           </v-card-subtitle>
+          <v-divider></v-divider>
           <v-card-text>
             <v-simple-table>
               <template v-slot:default>
@@ -162,7 +170,7 @@
                     <th class="text-left">Delivery number</th>
                     <th class="text-left">Due Date</th>
                     <th class="text-left">Status</th>
-                    <th class="text-right"></th>
+                    <th class="midh-text"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -170,25 +178,17 @@
                     <td>564647</td>
                     <td>28/06/2020</td>
                     <td>Out for delivery</td>
-                    <td>...</td>
+                    <td><v-icon>mdi-dots-vertical</v-icon></td>
                   </tr>
                   <tr>
                     <td>564647</td>
                     <td>28/06/2020</td>
                     <td>Out for delivery</td>
-                    <td>...</td>
-                  </tr>
-                  <tr>
-                    <td>564647</td>
-                    <td>11/06/2020</td>
-                    <td>Out for delivery</td>
-                    <td>...</td>
-                  </tr>
-                  <tr>
-                    <td>564647</td>
-                    <td>09/06/2020</td>
-                    <td>Dispatched</td>
-                    <td>...</td>
+                    <td>
+                      <span pa-0 ma-0>
+                        <v-icon>mdi-dots-vertical</v-icon>
+                      </span>
+                    </td>
                   </tr>
                 </tbody>
               </template>
@@ -199,65 +199,60 @@
 
       <!--  Oustanding payments table-->
       <v-col>
-        <v-card>
-          <v-card-subtitle>
-            <v-container px-6>
-              <v-row>
-                Oustanding payments
-                <v-spacer />
-                <v-icon>mdi-cash</v-icon>
-              </v-row>
-            </v-container>
-          </v-card-subtitle>
-          <v-card-text>
-            <v-simple-table>
-              <template v-slot:default>
-                <thead>
-                  <tr>
-                    <th class="text-left">Invoice number</th>
-                    <th class="text-left">Due Date</th>
-                    <th class="text-left">Amount</th>
-                    <th class="text-right"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>564647</td>
-                    <td>28/06/2020</td>
-                    <td>€ 353.4</td>
-                    <td>...</td>
-                  </tr>
-                  <tr>
-                    <td>564647</td>
-                    <td>28/06/2020</td>
-                    <td>€ 5322.4</td>
-                    <td>...</td>
-                  </tr>
-                  <tr>
-                    <td>564647</td>
-                    <td>11/06/2020</td>
-                    <td>€ 112.3</td>
-                    <td>...</td>
-                  </tr>
-                  <tr>
-                    <td>564647</td>
-                    <td>09/06/2020</td>
-                    <td>€ 645.1</td>
-                    <td>...</td>
-                  </tr>
-                </tbody>
-              </template>
-            </v-simple-table>
-          </v-card-text>
-        </v-card>
+        <TopFiveList
+          :invoices="outstanding.invoices"
+          :headers="outstanding.headers"
+          :title="outstanding.title"
+          :icon="outstanding.icon"
+        />
       </v-col>
     </v-row>
   </v-layout>
 </template>
 
 <script>
+import TopFiveList from '@/components/dashboard/TopFiveList.vue'
 export default {
-  components: {}
+  components: { TopFiveList },
+  data: () => ({
+    outstanding: {
+      title: 'Oustanding Payments',
+      icon: 'mdi-cash',
+      invoices: [
+        {
+          invoice_number: 346253,
+          due_date: '10/04/2020',
+          Amount: 6
+        },
+        {
+          invoice_number: 233724,
+          due_date: '09/05/2019',
+          Amount: 10
+        },
+        {
+          invoice_number: 34234,
+          due_date: '11/08/2018',
+          Amount: 31
+        },
+        {
+          invoice_number: 134234,
+          due_date: '06/04/2020',
+          Amount: 25
+        },
+        {
+          invoice_number: 745645,
+          due_date: '03/11/2019',
+          Amount: 198
+        }
+      ],
+      headers: [
+        { text: 'Invoice Number', value: 'invoice_number', sortable: false },
+        { text: 'Due date', value: 'due_date', sortable: false },
+        { text: 'Amount', value: 'Amount', sortable: false, align: 'center' },
+        { text: '', value: 'actions', sortable: false, align: 'center' }
+      ]
+    }
+  })
 }
 </script>
 
