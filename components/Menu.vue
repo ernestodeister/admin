@@ -114,7 +114,7 @@ export default {
         {
           icon: 'mdi-cart-outline',
           title: 'PLACE AN ORDER',
-          to: '/place_order',
+          to: '/placeorder/PlaceOrder',
           val: true,
         }
       ],

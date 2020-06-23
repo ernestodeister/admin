@@ -37,12 +37,12 @@
             :items="items"
             hide-default-footer
             class="elevation-1"
-         >
+          >
             <template v-slot:header.name="{ header }">
             {{ header.text.toUpperCase() }}
             </template>
-        </v-data-table>
-        <v-row>
+          </v-data-table>
+            <v-row>
                 <v-col cols="10">
                 </v-col>
                 <v-col cols="2">
