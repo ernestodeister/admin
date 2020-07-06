@@ -47,6 +47,9 @@
             </v-card>
           </v-dialog>
         </template>
+        <template v-slot:item.invoice_number="{ item }">
+          <nuxt-link to="/about">{{ item.invoice_number }}</nuxt-link>
+        </template>
         <template v-slot:item.actions="{ item }">
           <v-icon small class="mr-2" @click="editItem(item)">
             mdi-dots-vertical
