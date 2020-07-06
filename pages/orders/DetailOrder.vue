@@ -8,29 +8,40 @@
         </v-card-title>
         <v-card-text>
             <v-row>
-                <v-col cols="3">
-                    <p>
+                <v-col class="d-none d-sm-flex" cols="3">
                         Bill to <br>
                         Jhon Doe
                         Codeless Plataforms, 25 Boume Valley Road, <br>
                         Poole, BH12 1DY
-                    </p>
                 </v-col>
-                <v-col cols="7">
-                    <p>
+                <v-col class="d-none d-sm-flex" cols="7">
                         Ship to <br>
                         Jhon Doe
                         Codeless Plataforms, 25 Boume Valley Road, <br>
                         Poole, BH12 1DY
-                    </p>
                 </v-col>
-                <v-col cols="2">
-                    <p>
+                <v-col class="d-none d-sm-flex" cols="2">
                         Order Date: 05/07/2018 <br>
                         Order Status: Open<br>
                         PO Ref No: #ASD-987654<br>
-                    </p>
                 </v-col>
+                <div class="hidden-sm-and-up pa-3">
+                  Bill to <br>
+                  Jhon Doe
+                  Codeless Plataforms, 25 Boume Valley Road, <br>
+                  Poole, BH12 1DY
+                </div>
+                <div class="hidden-sm-and-up pa-3">
+                   Ship to <br>
+                   Jhon Doe
+                   Codeless Plataforms, 25 Boume Valley Road, <br>
+                   Poole, BH12 1DY
+                </div>
+                <div class="hidden-sm-and-up pa-3">
+                   Order Date: 05/07/2018 <br>
+                   Order Status: Open<br>
+                   PO Ref No: #ASD-987654<br>
+                </div>
             </v-row>
           <v-data-table
             :headers="headers"
@@ -43,15 +54,20 @@
             </template>
           </v-data-table>
             <v-row>
-                <v-col cols="10">
+                <v-col class="d-none d-sm-flex" cols="10">
                 </v-col>
-                <v-col cols="2">
-                    <p>
+                <v-col class="d-none d-sm-flex" cols="2">
+                    <div class="d-none d-sm-flex">
                         Sub-Total: $3.200 <br>
                         Discount: 0.00%<br>
                         VAT: 20.00%<br>
-                    </p>
+                    </div>
                 </v-col>
+                <div class="hidden-sm-and-up pa-3">
+                  Sub-Total: $3.200 <br>
+                  Discount: 0.00%<br>
+                  VAT: 20.00%<br>
+                </div>
             </v-row>
         </v-card-text>
         <v-card-actions>
@@ -121,3 +137,8 @@ export default {
     }),
   }
 </script>
+<style>
+
+
+
+</style>

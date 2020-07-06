@@ -6,7 +6,7 @@
         </v-card-title>
         <v-card-text>
             <v-row>
-                <v-col cols="5">
+                <v-col class="sup" xs="12" sm="12" md="5" lg="5" xl="5"> 
                     <v-form
                         ref="form"
                         v-model="valid"
@@ -93,10 +93,10 @@
                         </v-row>
                     </v-form>
                 </v-col>
-                <v-col cols="3">
+                <v-col class="sup" xs="12" sm="12" md="3" lg="3" xl="3">
                     
                 </v-col>
-                <v-col cols="4">
+                <v-col class="sup" xs="12" sm="12" md="4" lg="4" xl="4">
                     <v-sheet
                     elevation="12"
                     class="pa-12"
@@ -183,7 +183,7 @@
                                         :single-select="singleSelect"
                                         :headers="headers"
                                         :items="product"
-                                        item-key="prod"
+                                        item-key=prod
                                         class="elevation-1"
                                         hide-default-footer
                                         :search="search"
@@ -383,3 +383,8 @@
     },
   }
 </script>
+<style>
+.sup{
+  flex-basis: auto;
+}
+</style>
