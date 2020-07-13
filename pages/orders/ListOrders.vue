@@ -107,8 +107,9 @@
   </v-layout>
 </template>
 
-<script>
-  export default {
+<script lang="ts">
+import Vue from 'vue'
+  export default Vue.extend({
     data: () => ({
       dialog: false,
       headers: [
@@ -125,7 +126,78 @@
         { text: 'State', value: 'state', sortable: false },
         { text: 'Actions', value: 'actions', sortable: false },
       ],
-      orders: [],
+      orders: [
+        {
+            norder: 'N° 00001',
+            salesnumber: 9658426,
+            billto: 'Jhon Doe',
+            shipto: 'Jhon Doe',
+            state: 'cancelled',
+          },
+          {
+            norder: 'N° 00002',
+            salesnumber: 9505621,
+            billto: 'Jhon Doe',
+            shipto: 'Jhon Doe',
+            state: 'pending',
+          },
+          {
+            norder: 'N° 00002',
+            salesnumber: 9505621,
+            billto: 'Jhon Doe',
+            shipto: 'Jhon Doe',
+            state: 'pending',
+          },
+          {
+            norder: 'N° 00001',
+            salesnumber: 9658426,
+            billto: 'Jhon Doe',
+            shipto: 'Jhon Doe',
+            state: 'cancelled',
+          },
+          {
+            norder: 'N° 00002',
+            salesnumber: 9505621,
+            billto: 'Jhon Doe',
+            shipto: 'Jhon Doe',
+            state: 'pending',
+          },
+          {
+            norder: 'N° 00001',
+            salesnumber: 9658426,
+            billto: 'Jhon Doe',
+            shipto: 'Jhon Doe',
+            state: 'cancelled',
+          },
+          {
+            norder: 'N° 00002',
+            salesnumber: 9505621,
+            billto: 'Jhon Doe',
+            shipto: 'Jhon Doe',
+            state: 'pending',
+          },
+          {
+            norder: 'N° 00001',
+            salesnumber: 9658426,
+            billto: 'Jhon Doe',
+            shipto: 'Jhon Doe',
+            state: 'cancelled',
+          },
+          {
+            norder: 'N° 00002',
+            salesnumber: 9505621,
+            billto: 'Jhon Doe',
+            shipto: 'Jhon Doe',
+            state: 'pending',
+          },
+          {
+            norder: 'N° 00001',
+            salesnumber: 9658426,
+            billto: 'Jhon Doe',
+            shipto: 'Jhon Doe',
+            state: 'cancelled',
+          },
+      ],
       editedIndex: -1,
       editedItem: {
         norder: '',
@@ -155,87 +227,18 @@
       },
     },
 
-    created () {
-      this.initialize()
-    },
+    // created () {
+    //   this.initialize()
+    // },
 
     methods: {
-      initialize () {
-        this.orders = [
-          {
-            norder: 'N° 00001',
-            salesnumber: 9658426,
-            billto: 'Jhon Doe',
-            shipto: 'Jhon Doe',
-            state: 'cancelled',
-          },
-          {
-            norder: 'N° 00002',
-            salesnumber: 9505621,
-            billto: 'Jhon Doe',
-            shipto: 'Jhon Doe',
-            state: 'pending',
-          },
-          {
-            norder: 'N° 00002',
-            salesnumber: 9505621,
-            billto: 'Jhon Doe',
-            shipto: 'Jhon Doe',
-            state: 'pending',
-          },
-          {
-            norder: 'N° 00001',
-            salesnumber: 9658426,
-            billto: 'Jhon Doe',
-            shipto: 'Jhon Doe',
-            state: 'cancelled',
-          },
-          {
-            norder: 'N° 00002',
-            salesnumber: 9505621,
-            billto: 'Jhon Doe',
-            shipto: 'Jhon Doe',
-            state: 'pending',
-          },
-          {
-            norder: 'N° 00001',
-            salesnumber: 9658426,
-            billto: 'Jhon Doe',
-            shipto: 'Jhon Doe',
-            state: 'cancelled',
-          },
-          {
-            norder: 'N° 00002',
-            salesnumber: 9505621,
-            billto: 'Jhon Doe',
-            shipto: 'Jhon Doe',
-            state: 'pending',
-          },
-          {
-            norder: 'N° 00001',
-            salesnumber: 9658426,
-            billto: 'Jhon Doe',
-            shipto: 'Jhon Doe',
-            state: 'cancelled',
-          },
-          {
-            norder: 'N° 00002',
-            salesnumber: 9505621,
-            billto: 'Jhon Doe',
-            shipto: 'Jhon Doe',
-            state: 'pending',
-          },
-          {
-            norder: 'N° 00001',
-            salesnumber: 9658426,
-            billto: 'Jhon Doe',
-            shipto: 'Jhon Doe',
-            state: 'cancelled',
-          },
-        ]
-      },
+      // initialize () {
+      //   this.orders = [
+          
+      //   ]
+      // },
 
-      deleteItem (item) {
+      deleteItem (item:any) {
         const index = this.orders.indexOf(item)
         confirm('Are you sure you want to delete this item?') && this.orders.splice(index, 1)
       },
@@ -257,5 +260,5 @@
         this.close()
       },
     },
-  }
+  })
 </script>

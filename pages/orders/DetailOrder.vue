@@ -81,9 +81,10 @@
   </v-layout>
 </template>
 
-<script>
+<script lang="ts">
 import Head from '@/components/Head.vue'
-export default {
+import Vue from 'vue'
+export default Vue.extend({
     components: {
     Head
     },
@@ -135,7 +136,7 @@ export default {
         },
       ],
     }),
-  }
+  })
 </script>
 <style>
 

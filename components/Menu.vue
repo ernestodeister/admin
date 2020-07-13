@@ -40,9 +40,10 @@
     </v-navigation-drawer>
 </template>
 
-<script>
-
-export default {
+<script lang="ts">
+import Vue from 'vue'
+import Vuetify from 'vuetify'
+export default Vue.extend({
   name: 'Menu',
   data() {
     return {
@@ -137,5 +138,5 @@ export default {
       } 
     }
   }
-}
+})
 </script>
