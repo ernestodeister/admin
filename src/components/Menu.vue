@@ -1,14 +1,21 @@
 <template>
+
     <v-navigation-drawer
       permanent
+      :mini-variant.sync="switch1"
+      :mini-variant-width="width"
       v-model="drawer"
       :clipped="clipped"
       fixed
       app
     >
+    <v-switch
+      v-model="switch1"
+      class="ml-4"
+    ></v-switch>
       <v-list>
         <template v-for="(item, index) in items">
-          <div :key="index">
+          <div :key="index" v-if="switch1 == false || switch1 == true && item.val == true">
            <v-subheader
                 v-if="item.header"
                 :key="item.header"
@@ -19,20 +26,19 @@
                 v-else-if="item.divider"
                 :key="index"
               ></v-divider> 
-          <v-list-item
-            v-else
-            :key="item.title"
-            ripple
-            :to="item.to"
-          >
-           <!-- <router-link to="/about">About</router-link> -->
-            <v-list-item-action>
-              <v-icon >{{ item.icon }}</v-icon>
-            </v-list-item-action>
-            <v-list-item-content>
-              <v-list-item-title v-text="item.title" />
-            </v-list-item-content>
-          </v-list-item> 
+            <v-list-item
+              v-else
+              :key="item.title"
+              ripple
+              :to="item.to"
+            >
+              <v-list-item-action>
+                <v-icon >{{ item.icon }}</v-icon>
+              </v-list-item-action>
+              <v-list-item-content>
+                <v-list-item-title v-text="item.title" />
+              </v-list-item-content>
+            </v-list-item> 
           </div>
         </template> 
       </v-list>
@@ -54,8 +60,9 @@ export default Vue.extend({
       drawer: true,
       fixed: false,
       resize: true,
-      width: 60,
+      width: 80,
       notifications: false,
+      switch1: false,
       items: [
         {
           icon: 'mdi-television-guide',
@@ -126,10 +133,29 @@ export default Vue.extend({
   },
   methods: {
 
-    },
-    
+  },
   computed: {
 
-  }
+  },
+  watch : {
+  },
+  beforeCreate: function() {
+    this.$nextTick(() => {
+        console.log('beforeCreate');
+        let test = this.$vuetify.breakpoint.name
+        if(test == 'lg' || test == 'xl'){
+          console.log('false');
+          return this.$data.switch1 = false
+        }else{
+          console.log('true');
+          return this.$data.switch1 = true
+        }
+    });
+  },
+  beforeUpdate: function() {
+    this.$nextTick(() => {
+      console.log('beforeUpdate');
+    });
+  },
 })
 </script>
