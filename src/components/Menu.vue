@@ -141,20 +141,18 @@ export default Vue.extend({
   },
   beforeCreate: function() {
     this.$nextTick(() => {
-        console.log('beforeCreate');
+        //console.log('beforeCreate');
         let test = this.$vuetify.breakpoint.name
         if(test == 'lg' || test == 'xl'){
-          console.log('false');
           return this.$data.switch1 = false
         }else{
-          console.log('true');
           return this.$data.switch1 = true
         }
     });
   },
   beforeUpdate: function() {
     this.$nextTick(() => {
-      console.log('beforeUpdate');
+      //console.log('beforeUpdate');
     });
   },
 })

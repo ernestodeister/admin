@@ -43,24 +43,10 @@
 <script>
 /* eslint-disable */ 
 import axios from 'axios'
+import {mapState, mapMutations} from "vuex"
 export default {
   data(){
     return{
-        form: {
-          id: '',
-          name: '',
-          typedoc: '',
-          nrodoc: '',
-          shipadd: '',
-          payment: '',
-          ordcom: '',
-          product: {
-            id : '',
-            name : '',
-            price : '',
-            cant : ''
-          }
-        },
         orders: '',
         updateSubmit: false,
         erro: '',
@@ -70,13 +56,22 @@ export default {
     this.load()
   },
   methods: {
+    ...mapMutations(['']),
     load(){
-        axios.get('http://localhost:3000/order').then(res => {
+      axios.get('http://localhost:3000/order').then(res => {
             this.orders = res.data
         }).catch ((err) => {
             console.log(err);
         })
     },
+    edit(order){
+      this.order=this.order;
+      console.log(order);
+    }
+  },
+  computed:{
+    ...mapState(['order']),
+   
   }
 }
 </script>

@@ -379,7 +379,7 @@ methods: {
     load(){
         axios.get('http://localhost:3000/order').then(res => {
             this.Order = res.data
-            console.log(this.Order);
+            //console.log(this.Order);
         }).catch ((err) => {
             console.log(err);
         })
