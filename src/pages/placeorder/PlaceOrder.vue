@@ -1,70 +1,48 @@
 <template>
-        <v-layout column justify-center align-center >
+  <v-layout column justify-center align-center >
             <v-card width="100%">
               <v-card-title class="headline">
                 Place And Order
               </v-card-title>
               <v-card-text>
+                <v-form @submit.prevent="add">
                   <v-row>
                       <v-col class="sup" xs="12" sm="12" md="6" lg="5" xl="5"> 
-                          <v-form
-                              ref="form"
-                              v-model="valid"
-                              lazy-validation
-                          >
+                          
+                          <input type="hidden" v-model="form.id" id="inputAdd">
                               <v-row>
                                   <v-col cols="4">
-                                      <v-subheader>Requested Delivery Date</v-subheader>
-                                  </v-col>
-                                  <v-col cols="8">
-                                      <v-menu
-                                        v-model="menu2"
-                                        :close-on-content-click="false"
-                                        :nudge-right="40"
-                                        transition="scale-transition"
-                                        offset-y
-                                        min-width="290px"
-                                      >
-                                        <template v-slot:activator="{ on, attrs }">
-                                          <v-text-field
-                                            v-model="date"
-                                            label="Picker without buttons"
-                                            prepend-icon="mdi-calendar"
-                                            readonly
-                                            v-bind="attrs"
-                                            v-on="on"
-                                          ></v-text-field>
-                                        </template>
-                                        <v-date-picker
-                                          v-model="date"
-                                          @input="menu2 = false"
-                                        ></v-date-picker>
-                                      </v-menu>
-                                  </v-col>
-                              </v-row>
-                              <v-row>
-                                  <v-col cols="4">
-                                      <v-subheader>PO Reference</v-subheader>
+                                      <v-subheader>Names and surnames of the client</v-subheader>
                                   </v-col>
                                   <v-col cols="8">
                                       <v-text-field
                                       label=""
-                                      value="12345"
+                                      v-model="form.name"
                                       ></v-text-field>
                                   </v-col>
                               </v-row>
                               <v-row>
                                   <v-col cols="4">
-                                      <v-subheader>Billing Address</v-subheader>
+                                      <v-subheader>Document type</v-subheader>
                                   </v-col>
                                   <v-col cols="8">
                                       <v-select
-                                      v-model="select"
-                                      :items="test"
-                                      :rules="[v => !!v || 'Billing is required']"
-                                      label="Billing"
+                                      v-model="form.typedoc"
+                                      :items="select1"
+                                      label=""
                                       required
                                       ></v-select>
+                                  </v-col>
+                              </v-row>
+                              <v-row>
+                                  <v-col cols="4">
+                                      <v-subheader>Document Number</v-subheader>
+                                  </v-col>
+                                  <v-col cols="8">
+                                      <v-text-field
+                                      label=""
+                                      v-model="form.nrodoc"
+                                      ></v-text-field>
                                   </v-col>
                               </v-row>
                               <v-row>
@@ -72,11 +50,21 @@
                                       <v-subheader>Shipping Address</v-subheader>
                                   </v-col>
                                   <v-col cols="8">
+                                      <v-text-field
+                                      label=""
+                                      v-model="form.shipadd"
+                                      ></v-text-field>
+                                  </v-col>
+                              </v-row>
+                              <v-row>
+                                  <v-col cols="4">
+                                      <v-subheader>Payment Method</v-subheader>
+                                  </v-col>
+                                  <v-col cols="8">
                                       <v-select
-                                      v-model="select"
-                                      :items="test"
-                                      :rules="[v => !!v || 'Shipping is required']"
-                                      label="Shipping"
+                                      v-model="form.payment"
+                                      :items="select2"
+                                      label=""
                                       required
                                       ></v-select>
                                   </v-col>
@@ -87,15 +75,14 @@
                                   </v-col>
                                   <v-col cols="8">
                                       <v-textarea
-                                      solo
+                                      v-model="form.ordcom"
                                       name="input-7-4"
                                       label=""
                                       ></v-textarea>
                                   </v-col>
                               </v-row>
-                          </v-form>
+                              
                       </v-col>
-                      
                       <v-col class="sup" xs="12" sm="12" md="6" lg="4" xl="4">
                           <v-sheet
                           elevation="12"
@@ -139,11 +126,13 @@
                             </thead>
                             <tbody>
                               <tr v-for="item in items" :key="item.prodlookup">
+                                <input type="hidden" v-model="form.product.id" >
                                 <td>
                                   <v-text-field
                                     outlined
                                     label="Search"
                                     prepend-inner-icon="mdi-magnify"
+                                    v-model="form.product.name"
                                   ></v-text-field>
                                 </td>
                                 <td>
@@ -208,11 +197,21 @@
                                     label="Number"
                                     outlined
                                     dense
+                                    v-model="form.product.cant"
                                     ></v-text-field>
                                   </v-col>
                                 </td>
-                                <td>{{ item.itemprice }}  </td>
-                                <td>{{ item.linetotal }}  </td>
+                                <td> 
+                                  <v-col cols="12"  >
+                                    <v-text-field
+                                    label="Number"
+                                    outlined
+                                    dense
+                                    v-model="form.product.price"
+                                    ></v-text-field>
+                                  </v-col>
+                                </td>
+                                <td>{{ form.product.price *  form.product.cant}}  </td>
                                 <td>
                                   <v-icon>mdi-window-close</v-icon>
                                 </td>
@@ -247,21 +246,25 @@
                       <v-col cols="10" >
                       </v-col>
                       <v-col cols="2" >
-                          <v-btn class="float-right" depressed small color="primary">Submit Order</v-btn>
+                          <v-btn small class="mx-2 float-right" color="primary" type="submit" v-show="!updateSubmit">
+                            <v-icon small>mdi-content-save</v-icon>
+                            Guardar
+                          </v-btn>
                       </v-col>
                   </v-row>
-
+                </v-form>
               </v-card-text>
             </v-card>
           
-        </v-layout>
+  </v-layout>
 </template>
-
 <script lang="ts">
+/* eslint-disable */ 
 import Vue from 'vue'
-  export default Vue.extend({
-    data() {
-      return {
+import axios from 'axios'
+export default Vue.extend({
+   data () {
+       return{
       date: new Date().toISOString().substr(0, 10),
       search: '',
       dialog: false,
@@ -271,11 +274,35 @@ import Vue from 'vue'
       selected: [],
       email: '',
       select: null,
-      test: [
-        'Bourne Gate 1',
-        'Bourne Gate 2',
-        'Bourne Gate 3',
-        'Bourne Gate 4',
+      form: {
+          id: '',
+          name: '',
+          typedoc: '',
+          nrodoc: '',
+          shipadd: '',
+          payment: '',
+          ordcom: '',
+          product: {
+            id : '',
+            name : '',
+            price : '',
+            cant : ''
+          }
+        },
+      updateSubmit: false,
+      erro: '',
+      Order: '',
+      select1: [
+        'DNI',
+        'RUC',
+        'PASAPORTE',
+        'CARNET DE EXT.',
+      ],
+      select2: [
+        'TARJETA',
+        'CASH',
+        'CREDIT AND DEBIT CARDS',
+        'TRANSFER',
       ],
       /*modal*/
       headers: [
@@ -341,15 +368,40 @@ import Vue from 'vue'
       checkbox: false,
       menu1: false,
       menu2: false,
-      }
+       }
     },
-    methods: {
+
+    mounted() {
+      this.load()
+    },
+
+methods: {
+    load(){
+        axios.get('http://localhost:3000/order').then(res => {
+            this.Order = res.data
+            console.log(this.Order);
+        }).catch ((err) => {
+            console.log(err);
+        })
+    },
+    add(){
+      
+        this.erro = '';
+        axios.post('http://localhost:3000/order/', this.form).then(res => {
+          this.load()
+          this.form.name = ''
+          this.form.typedoc = ''
+          this.form.nrodoc = ''
+          this.form.shipadd = ''
+          this.form.payment = ''
+          this.form.ordcom = ''
+          this.form.product.name = ''
+          this.form.product.cant = ''
+          this.form.product.price = ''
+        })
       
     },
+    
+  }
   })
 </script>
-<style>
-.sup{
-  flex-basis: auto;
-}
-</style>

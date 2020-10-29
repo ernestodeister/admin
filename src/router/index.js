@@ -24,7 +24,12 @@ const routes = [
     path: '/orders/DetailOrder',
     name: 'DetailOrder',
     component: () => import('../pages/orders/DetailOrder.vue')
-  }
+  },
+  {
+    path: '/make_payment',
+    name: 'Make a Payment',
+    component: () => import('../pages/makepayment/MakePayment.vue')
+  },
   
 ]
 
