@@ -56,7 +56,7 @@ export default {
     this.load()
   },
   methods: {
-    ...mapMutations(['']),
+    ...mapMutations(['setOrderList']),
     load(){
       axios.get('http://localhost:3000/order').then(res => {
             this.orders = res.data
@@ -65,12 +65,11 @@ export default {
         })
     },
     edit(order){
-      this.order=this.order;
-      console.log(order);
+      this.$store.dispatch("searchOrder", order)
     }
   },
   computed:{
-    ...mapState(['order']),
+    ...mapState(['order','orderList']),
    
   }
 }
