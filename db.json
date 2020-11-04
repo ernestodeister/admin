@@ -2,94 +2,47 @@
   "order": [
     {
       "id": 1,
-      "name": "Ayla Emilly dos Santos",
-      "typedoc": "Ayla Emilly dos Santos",
-      "nrodoc": "1955-08-04",
-      "shipadd": "aylaemillydossantos@antunez.com.br",
-      "payment": "Administrador",
-      "ordcom": "1"
-    },
-    {
-      "id": 2,
-      "name": "test",
-      "typedoc": "RUC",
-      "nrodoc": "12331132",
-      "shipadd": "test",
-      "payment": "PASAPORTE",
-      "ordcom": "test"
-    },
-    {
-      "id": 3,
-      "name": "test",
-      "typedoc": "CARNET DE EXT.",
-      "nrodoc": "12345678",
-      "shipadd": "test",
-      "payment": "DNI",
-      "ordcom": "test"
-    },
-    {
-      "id": 4,
-      "name": "test",
-      "typedoc": "RUC",
-      "nrodoc": "123132132",
-      "shipadd": "asds",
-      "payment": "RUC",
-      "ordcom": "sdcdscs"
-    },
-    {
-      "id": 5,
-      "name": "test",
-      "typedoc": "RUC",
-      "nrodoc": "123132132",
-      "shipadd": "asds",
-      "payment": "RUC",
-      "ordcom": "sdcdscs"
-    },
-    {
-      "id": 6,
-      "name": "test",
-      "typedoc": "DNI",
-      "nrodoc": "72026867",
-      "shipadd": "test",
-      "payment": "RUC",
-      "ordcom": "test",
-      "product": {
-        "id": 1,
+      "idCli": 10,
+      "nroOrder": "0001",
+      "shippingAddr": "312 Calle Gavilanes",
+      "orderDate": "10/10/2020",
+      "shippingDate": "15/10/2020",
+      "product": [
+        {
+        "id": "PRO001",
         "name": "test",
-        "price": "",
-        "cant": "3"
-      }
-    },
-    {
-      "id": 7,
-      "name": "test",
-      "typedoc": "DNI",
-      "nrodoc": "11111111",
-      "shipadd": "test",
-      "payment": "RUC",
-      "ordcom": "1",
-      "product": {
-        "id": "",
-        "name": "test",
-        "price": "3",
+        "price": "50",
         "cant": "2"
-      }
-    },
-    {
-      "id": 8,
-      "name": "test",
-      "typedoc": "DNI",
-      "nrodoc": "123",
-      "shipadd": "123",
-      "payment": "PASAPORTE",
-      "ordcom": "123",
-      "product": {
-        "id": "",
-        "name": "test",
-        "price": "33",
-        "cant": "2"
-      }
+        },
+        {
+        "id": "PRO002",
+        "name": "test2",
+        "price": "5",
+        "cant": "5"
+        }
+      ]
+      
     }
   ],
-  "payment": []
+  "client": [
+    {
+      "id": 10,
+      "name": "Angel Floreano",
+      "typedoc": "DNI",
+      "nrodoc": "72028569",
+      "telmobile": "956926166",
+      "email":"angel.floreano@deister.es",
+      "paymethod": "TARJETA",
+      "paycod": "9658-7412-3214-2365",
+      "country":"Perú"
+    }
+  ],
+  "payment": [
+    {
+      "id": 1,
+      "nroPay": "PAY0001",
+      "idCli": 10,
+      "idOrder":"CLI001"
+    }
+  ]
 }
