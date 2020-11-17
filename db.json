@@ -9,32 +9,31 @@
       "shippingDate": "15/10/2020",
       "product": [
         {
-        "id": "PRO001",
-        "name": "test",
-        "price": "50",
-        "cant": "2"
+          "id": "PRO001",
+          "name": "test",
+          "price": "50",
+          "cant": "2"
         },
         {
-        "id": "PRO002",
-        "name": "test2",
-        "price": "5",
-        "cant": "5"
+          "id": "PRO002",
+          "name": "test2",
+          "price": "5",
+          "cant": "5"
         }
       ]
-      
     }
   ],
   "client": [
     {
-      "id": 10,
       "name": "Angel Floreano",
       "typedoc": "DNI",
-      "nrodoc": "72028569",
+      "nrodoc": "72028599",
       "telmobile": "956926166",
-      "email":"angel.floreano@deister.es",
+      "email": "angel.floreano@deister.pe",
       "paymethod": "TARJETA",
       "paycod": "9658-7412-3214-2365",
-      "country":"Perú"
+      "country": "Perú",
+      "id": 10
     }
   ],
   "payment": [
@@ -42,7 +41,7 @@
       "id": 1,
       "nroPay": "PAY0001",
       "idCli": 10,
-      "idOrder":"CLI001"
+      "idOrder": 1
     }
   ]
 }

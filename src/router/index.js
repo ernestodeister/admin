@@ -35,6 +35,11 @@ const routes = [
     name: 'User a Payment',
     component: () => import('../pages/makepayment/UserPayment.vue')
   },
+  {
+    path: '/payment',
+    name: 'Payment',
+    component: () => import('../pages/makepayment/Payment.vue')
+  },
   
 ]
 
