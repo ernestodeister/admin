@@ -5,7 +5,7 @@
                 Validation of direction of Shipping
             </v-card-title>
             <v-card-text>
-                <v-form ref="form" v-model="valid" lazy-validation>
+                <v-form ref="form">
                     <v-row>
                         <v-col cols="4">
                             <v-text-field v-model="order.nroOrder" label="Nro Order" required disabled>
@@ -34,19 +34,16 @@
 
                         </v-col>
                         <v-col cols="3">
-                            <v-btn :disabled="!valid" color="success" class="mr-4" @click="test()" >
+                            <v-btn  color="success" class="mr-4" @click="update()" >
                                 Edit
                             </v-btn>
 
-                            <v-btn color="primary" class="mr-4" >
+                            <v-btn color="primary" class="mr-4" to="/viewdetail">
                                 continue
                             </v-btn>
                         </v-col>
-                        
                     </v-row>
-
                 </v-form>
-        
             </v-card-text>
         </v-card>
     </v-layout>
@@ -59,36 +56,22 @@ import axios from 'axios'
 
   export default Vue.extend({
     data: () => ({
-      valid: true,
       markers:[]
       
     }),
 
     methods: {
-        addMarker($event) {
-            
-            if (this.markers.length) this.markers[this.markers.length - 1].animation = null
-            
-            const position = $event.latLng.toJSON()
-            this.markers.push({ position, animation: this.bounce })
-            console.log(this.markers);
-        },
-        removeMarker(index) {
-            this.markers.splice(index, 1)
-        },
         update(){ 
-            return axios.put('http://localhost:3000/client/' + this.client.id , {
-            name: this.client.name,
-            typedoc: this.client.typedoc,
-            nrodoc: this.client.nrodoc,
-            telmobile: this.client.telmobile,
-            email: this.client.email,
-            paymethod: this.client.paymethod,
-            paycod: this.client.paycod,
-            country: this.client.country
+            return axios.put('http://localhost:3000/order/' + this.order.id , {
+            idCli : this.order.idCli,
+            nroOrder: this.order.nroOrder,
+            shippingAddr: this.order.shippingAddr,
+            orderDate: this.order.orderDate,
+            shippingDate: this.order.shippingDate,
+            product: this.order.product,
             }).then(res => {
                 console.log(res);
-                alert("Usuario modificado");
+                alert("Direccion modificada");
             }).catch((err) => {
                 console.log(err);
             })  
@@ -120,7 +103,7 @@ import axios from 'axios'
             let place = text.getPlace();
             console.log(place);
             this.showLocationMap(place.geometry.location.lat(), place.geometry.location.lng())
-        })
+        });
 
         new window.google.maps.Map(document.getElementById('map'), {
             center: {lat: -34.397, lng: 150.644},

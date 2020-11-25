@@ -67,7 +67,7 @@
                                 Edit
                             </v-btn>
 
-                            <v-btn color="primary" class="mr-4" to="/payment">
+                            <v-btn color="primary" class="mr-4" to="/shipping">
                                 continue
                             </v-btn>
                         </v-col>
