@@ -8,7 +8,7 @@ export default new Vuex.Store({
   state: {
     order:[],
     client: [],
-    
+    breakpoint: false,
   },
   mutations: {
 
@@ -18,6 +18,9 @@ export default new Vuex.Store({
     setClient(state, list) {
       state.client = list;
     },
+    setBreakpoint(state, Boolean) {
+      state.breakpoint = Boolean;
+    }
 
   },
   actions: {
@@ -39,7 +42,11 @@ export default new Vuex.Store({
       })
     },
 
-    
+    searchBreakpoint({commit}, withPages) {
+  
+      commit("setBreakpoint", withPages);
+
+    },
     
   },
   modules: {

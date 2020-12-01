@@ -2,20 +2,20 @@
 
     <v-navigation-drawer
       permanent
-      :mini-variant.sync="switch1"
+      :mini-variant.sync="breakpoint"
       :mini-variant-width="width"
       v-model="drawer"
       :clipped="clipped"
       fixed
       app
     >
-    <v-switch
+    <!-- <v-switch
       v-model="switch1"
       class="ml-4"
-    ></v-switch>
+    ></v-switch> -->
       <v-list>
         <template v-for="(item, index) in items">
-          <div :key="index" v-if="switch1 == false || switch1 == true && item.val == true">
+          <div :key="index" v-if="breakpoint == false || breakpoint == true && item.val == true">
            <v-subheader
                 v-if="item.header"
                 :key="item.header"
@@ -50,6 +50,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import Vuetify from 'vuetify'
+import {mapState} from "vuex"
 
 Vue.use(Vuetify);
 export default Vue.extend({
@@ -135,25 +136,9 @@ export default Vue.extend({
 
   },
   computed: {
-
+    ...mapState(['breakpoint']),
   },
   watch : {
-  },
-  beforeCreate: function() {
-    this.$nextTick(() => {
-        //console.log('beforeCreate');
-        let test = this.$vuetify.breakpoint.name
-        if(test == 'lg' || test == 'xl'){
-          return this.$data.switch1 = false
-        }else{
-          return this.$data.switch1 = true
-        }
-    });
-  },
-  beforeUpdate: function() {
-    this.$nextTick(() => {
-      //console.log('beforeUpdate');
-    });
   },
 })
 </script>

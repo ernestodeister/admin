@@ -1,6 +1,11 @@
 <template>
   <v-app-bar :clipped-left="clipped" fixed app>
     <v-toolbar-title v-text="title" />
+    <v-switch
+    v-model="switch1"
+      class="ml-4"
+      @change="closeMenu()"
+    ></v-switch>
     <v-spacer />
     <v-btn depressed>
       <v-icon left>mdi-magnify</v-icon>
@@ -27,6 +32,8 @@
 </template>
 
 <script>
+import {mapState} from "vuex"
+
 export default {
   name: 'AppBar',
   data() {
@@ -41,8 +48,32 @@ export default {
         name: 'John Doe',
         color: 'red',
         icon: 'people'
-      }
+      },
+      switch1: false,
     }
-  }
+  },
+  methods:{
+    closeMenu(){
+      this.$store.dispatch("searchBreakpoint", this.switch1);
+    }
+  },
+  computed:{
+    ...mapState(['breakpoint']),
+  },
+  beforeCreate: function() {
+    this.$nextTick(() => {
+        // console.log('beforeCreate');
+        let breakpoint = this.$vuetify.breakpoint.name;
+        let widthPages = false;
+        if(breakpoint == 'lg' || breakpoint == 'xl'){
+          this.$store.dispatch("searchBreakpoint", widthPages);
+          this.switch1= widthPages;
+        }else{
+          this.$store.dispatch("searchBreakpoint", !widthPages);
+          this.switch1= !widthPages;
+        }
+        // console.log(widthPages);
+    });
+  },
 }
 </script>
