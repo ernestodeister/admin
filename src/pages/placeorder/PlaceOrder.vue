@@ -7,7 +7,7 @@
               <v-card-text>
                 <v-form @submit.prevent="add">
                   <v-row>
-                      <v-col class="sup" xs="12" sm="12" md="6" lg="5" xl="5"> 
+                      <v-col class="sup" xs="12" sm="12" md="6" lg="6" xl="5"> 
                           
                           <input type="hidden" v-model="form.id" id="inputAdd">
                               <v-row>
@@ -83,7 +83,7 @@
                               </v-row>
                               
                       </v-col>
-                      <v-col class="sup" xs="12" sm="12" md="6" lg="4" xl="4">
+                      <v-col class="sup" xs="12" sm="12" md="6" lg="6" xl="4">
                           <v-sheet
                           elevation="12"
                           class="pa-12"
@@ -111,109 +111,93 @@
                       </v-col>
                   </v-row>
                   <v-row>
+                    <v-spacer></v-spacer>
+                      <v-dialog v-model="dialog" persistent max-width="1000" data-app >
+                        <template v-slot:activator="{ on, attrs }">
+                            <v-btn small class="float-left" color="primary" type="button" 
+                            v-bind="attrs"
+                            v-on="on">
+                              <v-icon small>mdi-plus</v-icon>
+                                Add products
+                            </v-btn>  
+                        </template>
+                          <v-card>
+                            <v-card-title class="headline">
+                              <v-row> Product Catalogue</v-row>
+                              <v-row>
+                                <v-spacer></v-spacer>
+                                <v-text-field
+                                  v-model="search"
+                                  append-icon="mdi-magnify"
+                                  label="Search"
+                                  single-line
+                                  hide-details
+                                ></v-text-field>
+                              </v-row>
+                            </v-card-title>
+                            <v-card-text >
+                              <p>
+                                Search or look up Products and add then to your order line.
+                              </p>
+                              <v-data-table
+                                v-model="selected"
+                                :single-select="singleSelect"
+                                :headers="headers"
+                                :items="product"
+                                item-key=prod
+                                class="elevation-1"
+                                hide-default-footer
+                                :search="search"
+                                show-select
+                              >
+                                <template>
+                                  <!-- <v-chip  dark>{{ item.ava }}</v-chip> -->
+                                </template>
+                              </v-data-table>
+                            </v-card-text>
+                            <v-card-actions>
+                              <v-spacer></v-spacer>
+                              <v-btn color="green darken-1" text @click="dialog = false">Cancel</v-btn>
+                              <v-btn color="green darken-1" text @click="dialog = false">Save</v-btn>
+                            </v-card-actions>
+                          </v-card>
+                     </v-dialog>
+                    
+                  </v-row>
+                  <v-row>
                       <v-col cols="12" >
                         <v-simple-table dense>
                           <template v-slot:default>
                             <thead>
                               <tr>
-                                <th class="text-left">Product Lookup</th>
-                                <th class="text-left">Catalogue</th>
-                                <th class="text-left">Quantity</th>
-                                <th class="text-left">Item Price</th>
-                                <th class="text-left">Line Total</th>
-                                <th class="text-left">Delete</th>
+                                <th class="text-left" style="width : 20%">Product Lookup</th>
+                                <th class="text-left" style="width : 20%">Catalogue</th>
+                                <th class="text-left" style="width : 20%">Quantity</th>
+                                <th class="text-left" style="width : 20%">Item Price</th>
+                                <th class="text-left" style="width : 20%">Line Total</th>
                               </tr>
                             </thead>
                             <tbody>
-                              <tr v-for="item in items" :key="item.prodlookup">
-                                <input type="hidden" v-model="form.product.id" >
+                              <tr v-for="item in selected" :key="item.id">
+                                <!-- <input type="hidden" v-model="form.product.id" > -->
                                 <td>
-                                  <v-text-field
-                                    outlined
-                                    label="Search"
-                                    prepend-inner-icon="mdi-magnify"
-                                    v-model="form.product.name"
-                                  ></v-text-field>
+                                  {{item.prod}}
                                 </td>
                                 <td>
-                                      <v-dialog v-model="dialog" persistent max-width="1000" data-app >
-                                        <template v-slot:activator="{ on, attrs }">
-                                          <v-btn
-                                            text
-                                            icon
-                                            dark
-                                            v-bind="attrs"
-                                            v-on="on"
-                                            style="color:gray"
-                                          >
-                                            <v-icon>mdi-format-list-bulleted</v-icon>
-                                          </v-btn>
-                                        </template>
-                                        <v-card>
-                                          <v-card-title class="headline">
-                                            <v-row> Product Catalogue</v-row>
-                                            <v-row>
-                                              <v-spacer></v-spacer>
-                                              <v-text-field
-                                                v-model="search"
-                                                append-icon="mdi-magnify"
-                                                label="Search"
-                                                single-line
-                                                hide-details
-                                              ></v-text-field>
-                                            </v-row>
-                                          </v-card-title>
-                                          <v-card-text >
-                                            <p>
-                                              Search or look up Products and add then to your order line.
-                                            </p>
-                                            <v-data-table
-                                              v-model="selected"
-                                              :single-select="singleSelect"
-                                              :headers="headers"
-                                              :items="product"
-                                              item-key=prod
-                                              class="elevation-1"
-                                              hide-default-footer
-                                              :search="search"
-                                              show-select
-                                            >
-                                              <template>
-                                                <v-chip  dark>{{ item.ava }}</v-chip>
-                                              </template>
-                                            </v-data-table>
-                                          </v-card-text>
-                                          <v-card-actions>
-                                            <v-spacer></v-spacer>
-                                            <v-btn color="green darken-1" text @click="dialog = false">Cancel</v-btn>
-                                            <v-btn color="green darken-1" text @click="dialog = false">Save</v-btn>
-                                          </v-card-actions>
-                                        </v-card>
-                                      </v-dialog>
+                                  {{item.ava}}
                                 </td>
                                 <td>
-                                  <v-col cols="12"  >
                                     <v-text-field
-                                    label="Number"
                                     outlined
                                     dense
-                                    v-model="form.product.cant"
+                                    v-model="cant"
                                     ></v-text-field>
-                                  </v-col>
                                 </td>
                                 <td> 
-                                  <v-col cols="12"  >
-                                    <v-text-field
-                                    label="Number"
-                                    outlined
-                                    dense
-                                    v-model="form.product.price"
-                                    ></v-text-field>
-                                  </v-col>
+                                 {{item.unitprice}}
                                 </td>
-                                <td>{{ form.product.price *  form.product.cant}}  </td>
                                 <td>
-                                  <v-icon>mdi-window-close</v-icon>
+                                 {{item.unitprice * cant}}
                                 </td>
                               </tr>
                             </tbody>
@@ -236,7 +220,7 @@
                                   <v-col cols="4">
                                   </v-col>
                                   <v-col cols="4">
-                                      $0.00
+                                      {{total }}
                                   </v-col>
                               </v-row>
                           </v-chip>
@@ -274,6 +258,8 @@ export default Vue.extend({
       selected: [],
       email: '',
       select: null,
+      cant: 0,
+      total: 0,
       form: {
           id: '',
           name: '',
@@ -316,55 +302,44 @@ export default Vue.extend({
           { text: 'Unit Price', value: 'unitprice' },
         ],
       product:[
-        {
+          {
+            id: 1,
             prod: 'Frozen Yogurt',
             ava: 10,
-            unitprice: 29.99,
+            unitprice: 9.99,
           },
           {
+            id: 2,
             prod: 'Ice cream sandwich',
             ava: 15,
-            unitprice: 29.99,
+            unitprice: 19.99,
           },
           {
+            id: 3,
             prod: 'Eclair',
             ava: 20,
             unitprice: 29.99,
           },
           {
+            id: 4,
             prod: 'Cupcake',
             ava: 5,
-            unitprice: 29.99,
+            unitprice: 39.99,
           },
           {
+            id: 5,
             prod: 'Gingerbread',
             ava: 10,
-            unitprice: 29.99,
+            unitprice: 49.99,
           },
           {
+            id: 6,
             prod: 'Jelly bean',
             ava: 8,
-            unitprice: 29.99,
+            unitprice: 59.99,
           },
       ], 
-      items: [
-        {
-          prodlookup: 1,
-          catalo: '',
-          quant: 'NO',
-          itemprice: 0.00,
-          linetotal: 0.00,
-          delete: '',
-        },
-        {
-          prodlookup: 2,
-          catalo: '',
-          quant: 'NO',
-          itemprice: 0.00,
-          linetotal: 0.00,
-          delete: '',
-        },
-      ],
+      
       checkbox: false,
       menu1: false,
       menu2: false,

@@ -43,10 +43,10 @@ export default new Vuex.Store({
     },
 
     searchBreakpoint({commit}, withPages) {
-  
       commit("setBreakpoint", withPages);
-
     },
+
+    
     
   },
   modules: {
